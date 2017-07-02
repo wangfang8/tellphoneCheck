@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>title</title>
+</head>
+<body>
+<h1>手机归属地查询</h1>
+<input type="text" placeholder="请输入手机号码" class="tellphone">
+<input type="button" value="提交" class="btn">
+<p></p>
+</body>
+</html>
+<script type="text/javascript" src="./js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="./js/template-web.js"></script>
+<script>
+  $(function(){
+    $('.btn').click(function(){
+      $.ajax({
+        url:'https://tcc.taobao.com/cc/json/mobile_tel_segment.htm',
+        dataType:'jsonp',
+        data:'tel='+$('.tellphone').val(),
+        success:function(data){
+          console.log(data);
+          $('p').html(data.carrier);
+        }
+      })
+    })
+  })
+</script>
